@@ -1,11 +1,13 @@
+import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useInternetIdentity } from "../hooks/useInternetIdentity";
+import { useNavigate } from "../lib/router-shim";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 
@@ -83,7 +85,7 @@ export default function Navbar() {
                 onClick={() => navigate("/auth")}
                 data-ocid="nav.login_button"
               >
-                Login
+                Login / Sign Up
               </Button>
             ) : (
               <DropdownMenu>
@@ -110,6 +112,16 @@ export default function Navbar() {
                   >
                     My History
                   </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => navigate("/admin")}
+                    data-ocid="nav.admin_menu.link"
+                    className="cursor-pointer"
+                  >
+                    🛡️ Admin Panel
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator
+                    style={{ background: "oklch(0.25 0.03 260)" }}
+                  />
                   <DropdownMenuItem
                     onClick={() => {
                       clear();
@@ -158,15 +170,26 @@ export default function Navbar() {
               Tournaments
             </Link>
             {isAuthenticated && (
-              <Link
-                to="/history"
-                className="block px-3 py-2 text-sm"
-                style={{ color: "oklch(0.75 0.03 260)" }}
-                onClick={() => setMobileOpen(false)}
-                data-ocid="nav.history_link"
-              >
-                My History
-              </Link>
+              <>
+                <Link
+                  to="/history"
+                  className="block px-3 py-2 text-sm"
+                  style={{ color: "oklch(0.75 0.03 260)" }}
+                  onClick={() => setMobileOpen(false)}
+                  data-ocid="nav.history_link"
+                >
+                  My History
+                </Link>
+                <Link
+                  to="/admin"
+                  className="block px-3 py-2 text-sm"
+                  style={{ color: "oklch(0.75 0.03 260)" }}
+                  onClick={() => setMobileOpen(false)}
+                  data-ocid="nav.admin_menu.link"
+                >
+                  🛡️ Admin Panel
+                </Link>
+              </>
             )}
             {!isAuthenticated ? (
               <button
@@ -178,7 +201,7 @@ export default function Navbar() {
                 }}
                 data-ocid="nav.login_button"
               >
-                Login
+                Login / Sign Up
               </button>
             ) : (
               <button

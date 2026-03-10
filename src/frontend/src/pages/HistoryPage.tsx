@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import type { Registration } from "../backend.d";
 import { useActor } from "../hooks/useActor";
 import { useInternetIdentity } from "../hooks/useInternetIdentity";
+import { useNavigate } from "../lib/router-shim";
 
 const SLOT_NAMES: Record<string, string> = {
   "1": "11:00 AM — 2 vs 2",

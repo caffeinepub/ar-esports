@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import type { TournamentSlot } from "../backend.d";
 import { Button } from "../components/ui/button";
@@ -8,6 +7,7 @@ import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
 import { useActor } from "../hooks/useActor";
 import { useInternetIdentity } from "../hooks/useInternetIdentity";
+import { useNavigate } from "../lib/router-shim";
 
 const SLOT_OCIDS = [
   "register.slot.item.1",
